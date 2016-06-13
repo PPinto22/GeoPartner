@@ -1,0 +1,15 @@
+c:\users\pedro\documents\visual studio 2015\Projects\GeoPartner\GeoPartner\bin\Release\GeoPartner.dll
+c:\users\pedro\documents\visual studio 2015\Projects\GeoPartner\GeoPartner\bin\Release\GeoPartner.pdb
+c:\users\pedro\documents\visual studio 2015\Projects\GeoPartner\GeoPartner\bin\Release\GeoPartner.GeoPartner.apk
+c:\users\pedro\documents\visual studio 2015\Projects\GeoPartner\GeoPartner\bin\Release\GeoPartner.GeoPartner-Signed.apk
+c:\users\pedro\documents\visual studio 2015\Projects\GeoPartner\GeoPartner\obj\Release\GeoPartner.csprojResolveAssemblyReference.cache
+c:\users\pedro\documents\visual studio 2015\Projects\GeoPartner\GeoPartner\obj\Release\GeoPartner.dll
+c:\users\pedro\documents\visual studio 2015\Projects\GeoPartner\GeoPartner\obj\Release\GeoPartner.pdb
+c:\users\pedro\documents\visual studio 2015\Projects\GeoPartner\GeoPartner\obj\Release\android\bin\GeoPartner.GeoPartner.apk
+c:\users\pedro\documents\visual studio 2015\Projects\GeoPartner\GeoPartner\obj\Release\res\layout\main.xml
+c:\users\pedro\documents\visual studio 2015\Projects\GeoPartner\GeoPartner\obj\Release\res\values\strings.xml
+c:\users\pedro\documents\visual studio 2015\Projects\GeoPartner\GeoPartner\obj\Release\res\drawable\icon.png
+c:\users\pedro\documents\visual studio 2015\Projects\GeoPartner\GeoPartner\obj\Release\R.cs.flag
+c:\users\pedro\documents\visual studio 2015\Projects\GeoPartner\GeoPartner\obj\Release\uploadflags.txt
+c:\users\pedro\documents\visual studio 2015\Projects\GeoPartner\GeoPartner\obj\Release\GeoPartner.dll.mdb
+c:\users\pedro\documents\visual studio 2015\Projects\GeoPartner\GeoPartner\bin\Release\GeoPartner.dll.mdb
