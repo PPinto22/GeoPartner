@@ -1,3 +1,7 @@
+GeoPartner.Activity2, GeoPartner;md53f275b8e4cd098ab120fb5526255d03f.Activity2
+GeoPartner.Activity2, GeoPartner, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md53f275b8e4cd098ab120fb5526255d03f.Activity2
+GeoPartner.Activity2;md53f275b8e4cd098ab120fb5526255d03f.Activity2
+geopartner.Activity2;md53f275b8e4cd098ab120fb5526255d03f.Activity2
 GeoPartner.MainActivity, GeoPartner;md53f275b8e4cd098ab120fb5526255d03f.MainActivity
 GeoPartner.MainActivity, GeoPartner, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md53f275b8e4cd098ab120fb5526255d03f.MainActivity
 GeoPartner.MainActivity;md53f275b8e4cd098ab120fb5526255d03f.MainActivity

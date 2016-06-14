@@ -2,7 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" package="GeoPartner.GeoPartner" android:versionCode="1" android:versionName="1.0">
   <!--suppress UsesMinSdkAttributes-->
   <uses-sdk android:minSdkVersion="16" />
-  <application android:label="GeoPartner" android:name="android.app.Application" android:allowBackup="true" android:icon="@drawable/icon">
+  <application android:label="GeoPartner" android:name="android.app.Application" android:allowBackup="true">
+    <activity android:label="Activity2" android:name="md53f275b8e4cd098ab120fb5526255d03f.Activity2" />
     <activity android:icon="@drawable/icon" android:label="GeoPartner" android:name="md53f275b8e4cd098ab120fb5526255d03f.MainActivity">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
