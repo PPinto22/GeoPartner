@@ -7,6 +7,9 @@ using Android.Widget;
 using Android.OS;
 using System.Xml;
 using GeoPartner.Business;
+using Android.Gms.Maps.Model;
+using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace GeoPartner
 {
@@ -18,8 +21,7 @@ namespace GeoPartner
 
         protected override void OnCreate(Bundle bundle)
         {
-            file_path = "/GeoPartner/percurso.gp";
-            gp = new geopartner();
+
             base.OnCreate(bundle);
 
             // Set our view from the "main" layout resource
@@ -34,13 +36,27 @@ namespace GeoPartner
             Button iniciar = FindViewById<Button>(Resource.Id.button2);
 
             iniciar.Click += delegate {
-                EditText editText1 = FindViewById<EditText>(Resource.Id.editText1);
-                //string file_path = editText1.Text;
+                /*EditText editText1 = FindViewById<EditText>(Resource.Id.editText1);
+                string file_path = editText1.Text;
+                XmlDocument doc = new XmlDocument();
+                doc.Load(file_path);
+                gp.readXML(doc);*/
                 try
                 {
-                    XmlDocument doc = new XmlDocument();
-                    doc.Load(file_path);
-                    gp.readXML(doc);
+                    gp = new geopartner();
+
+                    List<string> websites = new List<string>();
+                    websites.Add("http://www.google.pt");
+                    websites.Add("http://www.wikipedia.com");
+                    atividade a1 = new atividade(new LatLng(5.5, -5.5), "objetivos...", "notas...", websites);
+                    atividade a2 = new atividade(new LatLng(6.6, -6.6), "objetivos...", "notas...", websites);
+
+                    gp.addAtividade(a1);
+                    gp.addAtividade(a2);
+
+                    var activity2 = new Intent(this, typeof(percursoActivity));
+                    activity2.PutExtra("Percurso", JsonConvert.SerializeObject(gp));
+                    StartActivity(activity2);
                 }
                 catch (Exception ex)
                 {

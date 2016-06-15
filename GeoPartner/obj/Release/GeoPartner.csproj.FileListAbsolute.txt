@@ -17,6 +17,7 @@ C:\Users\pedro\documents\visual studio 2015\Projects\GeoPartner\GeoPartner\bin\R
 C:\Users\pedro\documents\visual studio 2015\Projects\GeoPartner\GeoPartner\bin\Release\Xamarin.GooglePlayServices.Base.dll
 C:\Users\pedro\documents\visual studio 2015\Projects\GeoPartner\GeoPartner\bin\Release\Xamarin.GooglePlayServices.Basement.dll
 C:\Users\pedro\documents\visual studio 2015\Projects\GeoPartner\GeoPartner\bin\Release\Xamarin.GooglePlayServices.Maps.dll
+C:\Users\pedro\documents\visual studio 2015\Projects\GeoPartner\GeoPartner\obj\Release\res\layout\layout_percurso.xml
 C:\Users\pedro\documents\visual studio 2015\Projects\GeoPartner\GeoPartner\bin\Release\GeoPartner.dll.mdb
 C:\Users\pedro\documents\visual studio 2015\Projects\GeoPartner\GeoPartner\bin\Release\Java.Interop.dll.mdb
 C:\Users\pedro\documents\visual studio 2015\Projects\GeoPartner\GeoPartner\bin\Release\Mono.Android.dll.mdb
@@ -38,7 +39,7 @@ C:\Users\pedro\documents\visual studio 2015\Projects\GeoPartner\GeoPartner\obj\R
 C:\Users\pedro\documents\visual studio 2015\Projects\GeoPartner\GeoPartner\obj\Release\android\assets\System.Runtime.Serialization.dll.mdb
 C:\Users\pedro\documents\visual studio 2015\Projects\GeoPartner\GeoPartner\obj\Release\android\assets\System.ServiceModel.Internals.dll.mdb
 C:\Users\pedro\documents\visual studio 2015\Projects\GeoPartner\GeoPartner\obj\Release\android\assets\System.Xml.dll.mdb
-C:\Users\pedro\Documents\visual studio 2015\Projects\GeoPartner\GeoPartner\bin\Release\Compass.FilePicker.dll.mdb
-C:\Users\pedro\Documents\visual studio 2015\Projects\GeoPartner\GeoPartner\obj\Release\android\assets\Compass.FilePicker.dll.mdb
-C:\Users\pedro\Documents\visual studio 2015\Projects\GeoPartner\GeoPartner\obj\Release\GeoPartner.dll.mdb
-C:\Users\pedro\Documents\visual studio 2015\Projects\GeoPartner\GeoPartner\bin\Release\GeoPartner.dll.mdb
+C:\Users\pedro\documents\visual studio 2015\Projects\GeoPartner\GeoPartner\bin\Release\Newtonsoft.Json.dll
+C:\Users\pedro\documents\visual studio 2015\Projects\GeoPartner\GeoPartner\bin\Release\Newtonsoft.Json.xml
+C:\Users\pedro\documents\visual studio 2015\Projects\GeoPartner\GeoPartner\obj\Release\GeoPartner.dll.mdb
+C:\Users\pedro\documents\visual studio 2015\Projects\GeoPartner\GeoPartner\bin\Release\GeoPartner.dll.mdb

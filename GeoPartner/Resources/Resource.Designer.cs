@@ -349,17 +349,17 @@ namespace GeoPartner
 			// aapt resource value: 0x7f08000a
 			public const int auto = 2131230730;
 			
-			// aapt resource value: 0x7f08000f
-			public const int button1 = 2131230735;
-			
 			// aapt resource value: 0x7f080010
-			public const int button2 = 2131230736;
+			public const int button1 = 2131230736;
+			
+			// aapt resource value: 0x7f080011
+			public const int button2 = 2131230737;
 			
 			// aapt resource value: 0x7f08000b
 			public const int dark = 2131230731;
 			
-			// aapt resource value: 0x7f08000e
-			public const int editText1 = 2131230734;
+			// aapt resource value: 0x7f08000f
+			public const int editText1 = 2131230735;
 			
 			// aapt resource value: 0x7f080000
 			public const int hybrid = 2131230720;
@@ -367,11 +367,14 @@ namespace GeoPartner
 			// aapt resource value: 0x7f080007
 			public const int icon_only = 2131230727;
 			
-			// aapt resource value: 0x7f08000d
-			public const int imageView1 = 2131230733;
+			// aapt resource value: 0x7f08000e
+			public const int imageView1 = 2131230734;
 			
 			// aapt resource value: 0x7f08000c
 			public const int light = 2131230732;
+			
+			// aapt resource value: 0x7f08000d
+			public const int map = 2131230733;
 			
 			// aapt resource value: 0x7f080001
 			public const int none = 2131230721;
@@ -421,7 +424,10 @@ namespace GeoPartner
 		{
 			
 			// aapt resource value: 0x7f030000
-			public const int Main = 2130903040;
+			public const int layout_percurso = 2130903040;
+			
+			// aapt resource value: 0x7f030001
+			public const int Main = 2130903041;
 			
 			static Layout()
 			{

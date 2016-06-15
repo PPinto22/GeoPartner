@@ -25,6 +25,11 @@ namespace GeoPartner.Business
             this.atividadeAtual = 0;
         }
 
+        public void addAtividade(atividade a)
+        {
+            this.atividades.Add(a);
+        }
+
         public atividade getAtividadeAtual()
         {
             return this.atividades[atividadeAtual];

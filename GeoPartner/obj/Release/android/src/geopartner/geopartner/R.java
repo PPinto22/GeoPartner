@@ -302,13 +302,14 @@ containing a value of this type.
         public static final int adjust_height=0x7f080005;
         public static final int adjust_width=0x7f080006;
         public static final int auto=0x7f08000a;
-        public static final int button1=0x7f08000f;
-        public static final int button2=0x7f080010;
+        public static final int button1=0x7f080010;
+        public static final int button2=0x7f080011;
         public static final int dark=0x7f08000b;
-        public static final int editText1=0x7f08000e;
+        public static final int editText1=0x7f08000f;
+        public static final int fragment1=0x7f08000d;
         public static final int hybrid=0x7f080000;
         public static final int icon_only=0x7f080007;
-        public static final int imageView1=0x7f08000d;
+        public static final int imageView1=0x7f08000e;
         public static final int light=0x7f08000c;
         public static final int none=0x7f080001;
         public static final int normal=0x7f080002;
@@ -321,7 +322,8 @@ containing a value of this type.
         public static final int google_play_services_version=0x7f050000;
     }
     public static final class layout {
-        public static final int main=0x7f030000;
+        public static final int layout_percurso=0x7f030000;
+        public static final int main=0x7f030001;
     }
     public static final class string {
         public static final int ApplicationName=0x7f040020;
