@@ -100,6 +100,10 @@ class MonoPackageManager_Resources {
 		/* We need to ensure that "GeoPartner.dll" comes first in this list. */
 		"GeoPartner.dll",
 		"Java.Interop.dll",
+		"Xamarin.Android.Support.v4.dll",
+		"Xamarin.GooglePlayServices.Base.dll",
+		"Xamarin.GooglePlayServices.Basement.dll",
+		"Xamarin.GooglePlayServices.Maps.dll",
 		"System.ServiceModel.Internals.dll",
 	};
 	public static final String[] Dependencies = new String[]{

@@ -14,9 +14,11 @@ namespace GeoPartner
     public class MainActivity : Activity
     {
         private geopartner gp;
+        private string file_path;
 
         protected override void OnCreate(Bundle bundle)
         {
+            file_path = "/GeoPartner/percurso.gp";
             gp = new geopartner();
             base.OnCreate(bundle);
 
@@ -24,21 +26,26 @@ namespace GeoPartner
             SetContentView(Resource.Layout.Main);
 
             Button procurar = FindViewById<Button>(Resource.Id.button1);
+            procurar.Click += delegate
+            {
+                
+            };
 
             Button iniciar = FindViewById<Button>(Resource.Id.button2);
 
             iniciar.Click += delegate {
                 EditText editText1 = FindViewById<EditText>(Resource.Id.editText1);
-                string file_path = editText1.Text;
+                //string file_path = editText1.Text;
                 try
                 {
                     XmlDocument doc = new XmlDocument();
                     doc.Load(file_path);
                     gp.readXML(doc);
                 }
-                catch
+                catch (Exception ex)
                 {
-                    Toast.MakeText(this, "Ficheiro inválido", ToastLength.Short).Show();
+                    Toast.MakeText(this, ex.ToString(), ToastLength.Long).Show();
+                    // Toast.MakeText(this, "Ficheiro inválido", ToastLength.Short).Show();
                 }
             };
         }

@@ -10,21 +10,38 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using System.Xml;
+using Android.Gms.Maps.Model;
 
 namespace GeoPartner.Business
 {
     class geopartner
     {
         public List<atividade> atividades { get; set; }
+        public int atividadeAtual { get; set; }
 
         public geopartner()
         {
             this.atividades = new List<atividade>();
+            this.atividadeAtual = 0;
         }
 
-        /*
-         * Falta ler coordenadas
-         */
+        public atividade getAtividadeAtual()
+        {
+            return this.atividades[atividadeAtual];
+        }
+
+        public bool hasNext()
+        {
+            return this.atividadeAtual < (this.atividades.Count - 1);
+        }
+
+        public atividade proximaAtividade()
+        {
+            if (this.atividadeAtual >= this.atividades.Count)
+                return null;
+            else return this.atividades[atividadeAtual++];
+        }
+
         public void readXML(XmlDocument xmlDoc)
         {
             XmlNode sessao = xmlDoc.SelectSingleNode("sessao");
@@ -46,6 +63,8 @@ namespace GeoPartner.Business
                     attr = localizacao.Attributes["latitude"];
                     if (attr != null) latitude = double.Parse(attr.Value);
                     else throw new XmlException();
+
+                    LatLng coordenadas = new LatLng(latitude, longitude);
 
                     XmlNode nodo_objetivos = atividade.SelectSingleNode("objetivos");
                     if (nodo_objetivos == null) throw new XmlException();
@@ -69,7 +88,7 @@ namespace GeoPartner.Business
                         }
                     }
 
-                    atividade atv = new atividade(objetivos, notas, links);
+                    atividade atv = new atividade(coordenadas, objetivos, notas, links);
                     this.atividades.Add(atv);
                 }
             }
