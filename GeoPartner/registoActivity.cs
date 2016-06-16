@@ -14,7 +14,7 @@ using Newtonsoft.Json;
 
 namespace GeoPartner
 {
-    [Activity(Label = "registoActivity")]
+    [Activity(Label = "Registo")]
     public class registoActivity : Activity
     {
         private atividade atv;

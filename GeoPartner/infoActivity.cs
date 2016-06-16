@@ -15,10 +15,11 @@ using Android.Webkit;
 
 namespace GeoPartner
 {
-    [Activity(Label = "infoActivity")]
+    [Activity(Label = "Informação")]
     public class infoActivity : Activity
     {
         private atividade atv;
+        private ListView lvWebsites;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -37,7 +38,7 @@ namespace GeoPartner
             notas.KeyListener = null;
 
 
-            ListView lvWebsites = FindViewById<ListView>(Resource.Id.listViewWebsites);
+            lvWebsites = FindViewById<ListView>(Resource.Id.listViewWebsites);
             lvWebsites.ItemClick += LvWebsites_ItemClick;
             List<string> items = new List<string>();
             ArrayAdapter<string> adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, items);
@@ -51,7 +52,6 @@ namespace GeoPartner
 
         private void LvWebsites_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
         {
-            ListView lvWebsites = FindViewById<ListView>(Resource.Id.listViewWebsites);
             string item = (string)lvWebsites.GetItemAtPosition(e.Position);
 
             WebView webView1 = new WebView(this);

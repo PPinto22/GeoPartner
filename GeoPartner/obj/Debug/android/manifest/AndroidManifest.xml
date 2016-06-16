@@ -12,13 +12,15 @@
   <uses-feature android:glEsVersion="0x00020000" android:required="true" />
   <application android:label="GeoPartner" android:icon="@drawable/geopartner" android:name="android.app.Application" android:allowBackup="true" android:debuggable="true">
     <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
+    <activity android:label="Informação" android:name="md53f275b8e4cd098ab120fb5526255d03f.infoActivity" />
     <activity android:icon="@drawable/icon" android:label="GeoPartner" android:name="md53f275b8e4cd098ab120fb5526255d03f.MainActivity">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
     </activity>
-    <activity android:label="percursoActivity" android:name="md53f275b8e4cd098ab120fb5526255d03f.percursoActivity" />
+    <activity android:label="Percurso" android:name="md53f275b8e4cd098ab120fb5526255d03f.percursoActivity" />
+    <activity android:label="Registo" android:name="md53f275b8e4cd098ab120fb5526255d03f.registoActivity" />
     <provider android:name="mono.MonoRuntimeProvider" android:exported="false" android:initOrder="2147483647" android:authorities="GeoPartner.GeoPartner.mono.MonoRuntimeProvider.__mono_init__" />
     <!--suppress ExportedReceiver-->
     <receiver android:name="mono.android.Seppuku">

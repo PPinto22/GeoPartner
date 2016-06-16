@@ -15,7 +15,7 @@ using Newtonsoft.Json;
 
 namespace GeoPartner
 {
-    [Activity(Label = "percursoActivity")]
+    [Activity(Label = "Percurso")]
     public class percursoActivity : Activity, IOnMapReadyCallback
     {
         private GoogleMap mMap;

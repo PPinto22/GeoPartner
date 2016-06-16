@@ -73,14 +73,16 @@ namespace GeoPartner.Business
 
                     XmlNode nodo_objetivos = atividade.SelectSingleNode("objetivos");
                     if (nodo_objetivos == null) throw new XmlException();
-                    string objetivos = nodo_objetivos.Value;
+                    string objetivos = nodo_objetivos.InnerText;
+                    if (objetivos == null) objetivos = string.Empty;
 
                     XmlNode informacao = atividade.SelectSingleNode("informacao");
                     if (informacao == null) throw new XmlException();
 
                     XmlNode nodo_notas = informacao.SelectSingleNode("notas");
                     if (nodo_notas == null) throw new XmlException();
-                    string notas = nodo_notas.Value;
+                    string notas = nodo_notas.InnerText;
+
 
                     XmlNode link = informacao.SelectSingleNode("link");
                     List<string> links = new List<string>();
@@ -88,7 +90,7 @@ namespace GeoPartner.Business
                     {
                         if (link.NodeType == XmlNodeType.Element)
                         {
-                            string endereco = link.Value;
+                            string endereco = link.InnerText;
                             links.Add(endereco);
                         }
                     }
