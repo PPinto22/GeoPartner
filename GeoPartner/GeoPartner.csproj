@@ -98,10 +98,10 @@
     <AndroidResource Include="Resources\layout\layout_percurso.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\layout_registo_rocha.axml">
+    <AndroidResource Include="Resources\layout\layout_info.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\layout_info.axml">
+    <AndroidResource Include="Resources\layout\layout_registo.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

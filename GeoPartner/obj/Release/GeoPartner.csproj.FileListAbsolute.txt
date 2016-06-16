@@ -41,7 +41,7 @@ C:\Users\pedro\documents\visual studio 2015\Projects\GeoPartner\GeoPartner\obj\R
 C:\Users\pedro\documents\visual studio 2015\Projects\GeoPartner\GeoPartner\obj\Release\android\assets\System.Xml.dll.mdb
 C:\Users\pedro\documents\visual studio 2015\Projects\GeoPartner\GeoPartner\bin\Release\Newtonsoft.Json.dll
 C:\Users\pedro\documents\visual studio 2015\Projects\GeoPartner\GeoPartner\bin\Release\Newtonsoft.Json.xml
-C:\Users\pedro\Documents\Visual Studio 2015\Projects\GeoPartner\GeoPartner\obj\Release\res\layout\layout_registo_rocha.xml
 C:\Users\pedro\Documents\Visual Studio 2015\Projects\GeoPartner\GeoPartner\obj\Release\res\layout\layout_info.xml
-C:\Users\pedro\documents\visual studio 2015\Projects\GeoPartner\GeoPartner\obj\Release\GeoPartner.dll.mdb
-C:\Users\pedro\documents\visual studio 2015\Projects\GeoPartner\GeoPartner\bin\Release\GeoPartner.dll.mdb
+C:\Users\pedro\documents\visual studio 2015\Projects\GeoPartner\GeoPartner\obj\Release\res\layout\layout_registo.xml
+C:\Users\pedro\Documents\Visual Studio 2015\Projects\GeoPartner\GeoPartner\obj\Release\GeoPartner.dll.mdb
+C:\Users\pedro\Documents\Visual Studio 2015\Projects\GeoPartner\GeoPartner\bin\Release\GeoPartner.dll.mdb

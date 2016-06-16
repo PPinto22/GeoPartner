@@ -338,7 +338,7 @@ containing a value of this type.
     public static final class layout {
         public static int layout_info=0x7f030000;
         public static int layout_percurso=0x7f030001;
-        public static int layout_registo_rocha=0x7f030002;
+        public static int layout_registo=0x7f030002;
         public static int main=0x7f030003;
     }
     public static final class string {
@@ -451,6 +451,7 @@ containing a value of this type.
         /**  Long form sign-in button text [CHAR LIMIT=30] 
          */
         public static int common_signin_button_text_long=0x7f04001e;
+        public static int openCamera=0x7f040022;
     }
     public static final class style {
         public static int Theme_Custom=0x7f070000;

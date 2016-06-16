@@ -302,14 +302,15 @@ containing a value of this type.
         public static final int adjust_height=0x7f080005;
         public static final int adjust_width=0x7f080006;
         public static final int auto=0x7f08000a;
-        public static final int button1=0x7f08001e;
-        public static final int button2=0x7f08001f;
+        public static final int button1=0x7f08001f;
+        public static final int button2=0x7f080021;
+        public static final int buttonTipoRegisto=0x7f080020;
         public static final int dark=0x7f08000b;
         public static final int editText1=0x7f080017;
         public static final int editText2=0x7f080018;
+        public static final int editText3=0x7f080019;
         public static final int editText4=0x7f08001b;
         public static final int editText5=0x7f08001d;
-        public static final int editText6=0x7f080019;
         public static final int hybrid=0x7f080000;
         public static final int icon_only=0x7f080007;
         public static final int imageView1=0x7f080016;
@@ -325,6 +326,7 @@ containing a value of this type.
         public static final int satellite=0x7f080003;
         public static final int standard=0x7f080008;
         public static final int terrain=0x7f080004;
+        public static final int textRegistoDe=0x7f08001e;
         public static final int textView1=0x7f08000e;
         public static final int textView2=0x7f080010;
         public static final int textView3=0x7f080012;
@@ -338,7 +340,7 @@ containing a value of this type.
     public static final class layout {
         public static final int layout_info=0x7f030000;
         public static final int layout_percurso=0x7f030001;
-        public static final int layout_registo_rocha=0x7f030002;
+        public static final int layout_registo=0x7f030002;
         public static final int main=0x7f030003;
     }
     public static final class string {
@@ -451,6 +453,7 @@ containing a value of this type.
         /**  Long form sign-in button text [CHAR LIMIT=30] 
          */
         public static final int common_signin_button_text_long=0x7f04001e;
+        public static final int openCamera=0x7f040022;
     }
     public static final class style {
         public static final int Theme_Custom=0x7f070000;

@@ -20,6 +20,7 @@ namespace GeoPartner
         private geopartner gp;
         private string file_path = "/sdcard/Android/data/GeoPartner.GeoPartner/percurso.gp";
 
+
         protected override void OnCreate(Bundle bundle)
         {
 
