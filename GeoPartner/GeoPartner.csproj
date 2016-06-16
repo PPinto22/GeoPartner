@@ -81,9 +81,13 @@
   <ItemGroup>
     <Compile Include="Business\atividade.cs" />
     <Compile Include="Business\geopartner.cs" />
+    <Compile Include="Business\mineral.cs" />
     <Compile Include="Business\registo.cs" />
+    <Compile Include="Business\rocha.cs" />
+    <Compile Include="infoActivity.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="percursoActivity.cs" />
+    <Compile Include="registoActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -92,6 +96,12 @@
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
     <AndroidResource Include="Resources\layout\layout_percurso.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\layout_registo_rocha.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\layout_info.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

@@ -328,6 +328,7 @@ containing a value of this type.
     public static final class string {
         public static final int ApplicationName=0x7f040020;
         public static final int Hello=0x7f04001f;
+        public static final int Percurso=0x7f040021;
         /**  Brand name for Facebook [DO NOT TRANSLATE] 
          */
         public static final int auth_google_play_services_client_facebook_display_name=0x7f040001;

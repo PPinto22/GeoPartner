@@ -10,6 +10,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.Graphics;
+using BackOffice.Business;
 
 namespace GeoPartner
 {
@@ -20,6 +21,9 @@ namespace GeoPartner
         public const int ND = -1;
         public List<Bitmap> fotos { get; set; }
         public int tipo { get; set; }
+
+        public rocha rocha { get; set; }
+        public mineral mineral { get; set; }
 
         public registo()
         {
