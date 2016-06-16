@@ -349,11 +349,14 @@ namespace GeoPartner
 			// aapt resource value: 0x7f08000a
 			public const int auto = 2131230730;
 			
-			// aapt resource value: 0x7f08001e
-			public const int button1 = 2131230750;
-			
 			// aapt resource value: 0x7f08001f
-			public const int button2 = 2131230751;
+			public const int button1 = 2131230751;
+			
+			// aapt resource value: 0x7f080021
+			public const int button2 = 2131230753;
+			
+			// aapt resource value: 0x7f080020
+			public const int buttonTipoRegisto = 2131230752;
 			
 			// aapt resource value: 0x7f08000b
 			public const int dark = 2131230731;
@@ -364,14 +367,14 @@ namespace GeoPartner
 			// aapt resource value: 0x7f080018
 			public const int editText2 = 2131230744;
 			
+			// aapt resource value: 0x7f080019
+			public const int editText3 = 2131230745;
+			
 			// aapt resource value: 0x7f08001b
 			public const int editText4 = 2131230747;
 			
 			// aapt resource value: 0x7f08001d
 			public const int editText5 = 2131230749;
-			
-			// aapt resource value: 0x7f080019
-			public const int editText6 = 2131230745;
 			
 			// aapt resource value: 0x7f080000
 			public const int hybrid = 2131230720;
@@ -417,6 +420,9 @@ namespace GeoPartner
 			
 			// aapt resource value: 0x7f080004
 			public const int terrain = 2131230724;
+			
+			// aapt resource value: 0x7f08001e
+			public const int textRegistoDe = 2131230750;
 			
 			// aapt resource value: 0x7f08000e
 			public const int textView1 = 2131230734;
@@ -472,7 +478,7 @@ namespace GeoPartner
 			public const int layout_percurso = 2130903041;
 			
 			// aapt resource value: 0x7f030002
-			public const int layout_registo_rocha = 2130903042;
+			public const int layout_registo = 2130903042;
 			
 			// aapt resource value: 0x7f030003
 			public const int Main = 2130903043;
@@ -591,6 +597,9 @@ namespace GeoPartner
 			
 			// aapt resource value: 0x7f04001e
 			public const int common_signin_button_text_long = 2130968606;
+			
+			// aapt resource value: 0x7f040022
+			public const int openCamera = 2130968610;
 			
 			static String()
 			{
