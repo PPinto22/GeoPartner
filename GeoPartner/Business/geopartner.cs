@@ -25,9 +25,21 @@ namespace GeoPartner.Business
             this.atividadeAtual = 0;
         }
 
+
+
         public void addAtividade(atividade a)
         {
             this.atividades.Add(a);
+        }
+
+        public int porCompletar()
+        {
+            return this.atividades.Count - this.atividadeAtual;
+        }
+
+        public bool terminado()
+        {
+            return this.atividadeAtual >= this.atividades.Count;
         }
 
         public atividade getAtividadeAtual()
@@ -45,6 +57,26 @@ namespace GeoPartner.Business
             if (this.atividadeAtual >= this.atividades.Count)
                 return null;
             else return this.atividades[atividadeAtual++];
+        }
+
+        public string writeXML()
+        {
+            StringBuilder sb = new StringBuilder();
+
+            XmlWriterSettings ws = new XmlWriterSettings();
+            ws.Indent = true;
+            ws.Encoding = Encoding.UTF8;
+            using (XmlWriter writer = XmlWriter.Create(sb, ws))
+            {
+                writer.WriteStartElement("sessao");
+                foreach (atividade a in this.atividades)
+                {
+                    a.writeXML(writer);
+                }
+                writer.WriteEndElement();
+            }
+
+            return sb.ToString();
         }
 
         public void readXML(XmlDocument xmlDoc)

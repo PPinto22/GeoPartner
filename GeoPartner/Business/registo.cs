@@ -11,6 +11,10 @@ using Android.Views;
 using Android.Widget;
 using Android.Graphics;
 using BackOffice.Business;
+using System.IO;
+using Android.Media;
+using Java.IO;
+using System.Xml;
 
 namespace GeoPartner
 {
@@ -19,7 +23,7 @@ namespace GeoPartner
         public const int ROCHA = 0;
         public const int MINERAL = 1;
         public const int ND = -1;
-        public List<Bitmap> fotos { get; set; }
+        public byte[] foto { get; set; }
         public int tipo { get; set; }
 
         public rocha rocha { get; set; }
@@ -27,19 +31,65 @@ namespace GeoPartner
 
         public registo()
         {
-            this.fotos = new List<Bitmap>();
+            this.foto = null;
             this.tipo = ND;
         }
 
-        public registo(int tipo, List<Bitmap> fotos)
+        public registo(rocha rocha, Bitmap foto)
         {
-            this.tipo = tipo;
-            this.fotos = fotos;
+            this.tipo = ROCHA;
+            this.rocha = rocha;
+            if (foto != null)
+                this.foto = registo.imageToByteArray(foto);
+            else this.foto = null;
         }
 
-        public void addFoto(Bitmap foto)
+        public registo(mineral mineral, Bitmap foto)
         {
-            this.fotos.Add(foto);
+            this.tipo = MINERAL;
+            this.mineral = mineral;
+            if (foto != null)
+                this.foto = registo.imageToByteArray(foto);
+            else this.foto = null;
+        }
+
+        public static byte[] imageToByteArray(Bitmap imageIn)
+        {
+            MemoryStream stream = new MemoryStream();
+            imageIn.Compress(Bitmap.CompressFormat.Jpeg, 0, stream);
+            byte[] bitmapData = stream.ToArray();
+            return bitmapData;
+        }
+
+        public void writeXML(XmlWriter writer)
+        {
+            writer.WriteStartElement("registo");
+            writer.WriteStartElement("fotografias");
+            writer.WriteStartElement("fotografia");
+            if (this.foto != null)
+            {
+                writer.WriteString(Convert.ToBase64String(this.foto));
+            }
+            writer.WriteEndElement(); //</fotografia>
+            writer.WriteEndElement(); //</fotografias>
+
+            writer.WriteStartElement("voz");
+            //if (this.voz != null)
+            //{
+            //    writer.WriteString(Convert.ToBase64String(this.voz));
+            //}
+            writer.WriteEndElement(); //</voz>
+
+            if(this.tipo == ROCHA)
+            {
+                this.rocha.writeXML(writer);
+            }
+            else if(this.tipo == MINERAL)
+            {
+                this.mineral.writeXML(writer);
+            }
+
+            writer.WriteEndElement(); //</registo>
         }
     }
 }

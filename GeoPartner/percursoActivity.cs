@@ -12,39 +12,122 @@ using Android.Widget;
 using Android.Gms.Maps;
 using GeoPartner.Business;
 using Newtonsoft.Json;
+using Android.Graphics;
 
 namespace GeoPartner
 {
     [Activity(Label = "Percurso")]
-    public class percursoActivity : Activity, IOnMapReadyCallback
+    public class percursoActivity : Activity/*, IOnMapReadyCallback*/
     {
         private GoogleMap mMap;
         private geopartner gp;
+        private Button buttonTerminar;
+        private Button buttonRegisto;
+        private TextView textView1;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
 
-            gp = JsonConvert.DeserializeObject<geopartner>(Intent.GetStringExtra("Percurso"));
-
-            Toast.MakeText(this,""+gp.atividades.Count, ToastLength.Short).Show();
-
+            this.gp = JsonConvert.DeserializeObject<geopartner>(Intent.GetStringExtra("Percurso"));
 
             SetContentView(Resource.Layout.layout_percurso);
-            SetUpMap();
+
+            this.textView1 = FindViewById<TextView>(Resource.Id.textView1);
+            this.updateTextoAtividadeAtual();
+
+            this.buttonTerminar = FindViewById<Button>(Resource.Id.buttonTerminar);
+            this.buttonTerminar.Click += ButtonTerminar_Click;
+
+            this.buttonRegisto = FindViewById<Button>(Resource.Id.buttonRegisto);
+            this.buttonRegisto.Click += ButtonRegisto_Click;
+
+
+            //SetUpMap();
         }
 
-        public void OnMapReady(GoogleMap googleMap)
+        private void ButtonRegisto_Click(object sender, EventArgs e)
         {
-            mMap = googleMap;
+            var registoActivity = new Intent(this, typeof(registoActivity));
+            registoActivity.PutExtra("Atividade", JsonConvert.SerializeObject(gp.getAtividadeAtual()));
+            StartActivityForResult(registoActivity, 1000);
         }
 
-        private void SetUpMap()
+        private void ButtonTerminar_Click(object sender, EventArgs e)
         {
-            if(mMap == null)
+            if (!this.gp.terminado())
             {
-                FragmentManager.FindFragmentById<MapFragment>(Resource.Id.map).GetMapAsync(this);
+                new AlertDialog.Builder(this)
+                .SetPositiveButton("Yes", (sender2, args) =>
+                {
+                    // TODO
+                })
+                .SetNegativeButton("No", (sender2, args) =>
+                {
+
+                })
+                .SetMessage(String.Format("Existem {0} atividades por completar.\nTerminar o percurso?", this.gp.porCompletar()))
+                .SetTitle("Aviso")
+                .Show();
             }
         }
+
+        protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
+        {
+            base.OnActivityResult(requestCode, resultCode, data);
+            switch (requestCode)
+            {
+                case 1000: //Fim registo
+                    if (resultCode == Result.Ok)
+                    {
+                        registo reg = JsonConvert.DeserializeObject<registo>(data.GetStringExtra("Registo"));
+                        this.gp.getAtividadeAtual().registo = reg;
+                        this.gp.atividadeAtual++;
+                        this.updateTextoAtividadeAtual();
+                        if (gp.terminado())
+                        {
+                            Toast.MakeText(this, "Percurso Terminado", ToastLength.Short).Show();
+                            this.buttonRegisto.Background.SetTint(Color.ParseColor("#808080"));
+                            this.buttonRegisto.Clickable = false;
+                        }
+                        else
+                        {
+                            Toast.MakeText(this, "Registo guardado", ToastLength.Short).Show();
+                        }
+                    }
+                    break;
+            }
+        }
+
+        private void updateTextoAtividadeAtual()
+        {
+            if(this.gp.atividadeAtual > this.gp.atividades.Count)
+            {
+                this.textView1.Text = "Percurso terminado";
+            }
+            else
+            {
+                this.textView1.Text = String.Format("Atividade {0} de {1}", gp.atividadeAtual + 1, gp.atividades.Count);
+            }
+        }
+
+        public override void OnBackPressed()
+        {
+            //Toast.MakeText(this, "Back button", ToastLength.Short).Show();
+        }
+
+
+        //public void OnMapReady(GoogleMap googleMap)
+        //{
+        //    mMap = googleMap;
+        //}
+
+        //private void SetUpMap()
+        //{
+        //    if(mMap == null)
+        //    {
+        //        FragmentManager.FindFragmentById<MapFragment>(Resource.Id.fragment1).GetMapAsync(this);
+        //    }
+        //}
     }
 }

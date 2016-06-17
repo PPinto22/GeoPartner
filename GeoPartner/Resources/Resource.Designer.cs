@@ -340,6 +340,9 @@ namespace GeoPartner
 		public partial class Id
 		{
 			
+			// aapt resource value: 0x7f080023
+			public const int absoluteLayout1 = 2131230755;
+			
 			// aapt resource value: 0x7f080005
 			public const int adjust_height = 2131230725;
 			
@@ -349,32 +352,41 @@ namespace GeoPartner
 			// aapt resource value: 0x7f08000a
 			public const int auto = 2131230730;
 			
-			// aapt resource value: 0x7f08001f
-			public const int button1 = 2131230751;
-			
 			// aapt resource value: 0x7f080021
-			public const int button2 = 2131230753;
+			public const int button1 = 2131230753;
 			
-			// aapt resource value: 0x7f080020
-			public const int buttonTipoRegisto = 2131230752;
+			// aapt resource value: 0x7f080025
+			public const int button2 = 2131230757;
+			
+			// aapt resource value: 0x7f080024
+			public const int buttonGuardar = 2131230756;
+			
+			// aapt resource value: 0x7f080016
+			public const int buttonRegisto = 2131230742;
+			
+			// aapt resource value: 0x7f080014
+			public const int buttonTerminar = 2131230740;
+			
+			// aapt resource value: 0x7f080022
+			public const int buttonTipoRegisto = 2131230754;
 			
 			// aapt resource value: 0x7f08000b
 			public const int dark = 2131230731;
 			
-			// aapt resource value: 0x7f080017
-			public const int editText1 = 2131230743;
-			
-			// aapt resource value: 0x7f080018
-			public const int editText2 = 2131230744;
-			
 			// aapt resource value: 0x7f080019
-			public const int editText3 = 2131230745;
+			public const int editText1 = 2131230745;
+			
+			// aapt resource value: 0x7f08001a
+			public const int editText2 = 2131230746;
 			
 			// aapt resource value: 0x7f08001b
-			public const int editText4 = 2131230747;
+			public const int editText3 = 2131230747;
 			
 			// aapt resource value: 0x7f08001d
-			public const int editText5 = 2131230749;
+			public const int editText4 = 2131230749;
+			
+			// aapt resource value: 0x7f08001f
+			public const int editText5 = 2131230751;
 			
 			// aapt resource value: 0x7f080000
 			public const int hybrid = 2131230720;
@@ -382,11 +394,11 @@ namespace GeoPartner
 			// aapt resource value: 0x7f080007
 			public const int icon_only = 2131230727;
 			
-			// aapt resource value: 0x7f080016
-			public const int imageView1 = 2131230742;
+			// aapt resource value: 0x7f080018
+			public const int imageView1 = 2131230744;
 			
-			// aapt resource value: 0x7f080015
-			public const int infoButton = 2131230741;
+			// aapt resource value: 0x7f080017
+			public const int infoButton = 2131230743;
 			
 			// aapt resource value: 0x7f08000c
 			public const int light = 2131230732;
@@ -396,9 +408,6 @@ namespace GeoPartner
 			
 			// aapt resource value: 0x7f080013
 			public const int listViewWebsites = 2131230739;
-			
-			// aapt resource value: 0x7f080014
-			public const int map = 2131230740;
 			
 			// aapt resource value: 0x7f080001
 			public const int none = 2131230721;
@@ -418,11 +427,14 @@ namespace GeoPartner
 			// aapt resource value: 0x7f080008
 			public const int standard = 2131230728;
 			
+			// aapt resource value: 0x7f080015
+			public const int surfaceView1 = 2131230741;
+			
 			// aapt resource value: 0x7f080004
 			public const int terrain = 2131230724;
 			
-			// aapt resource value: 0x7f08001e
-			public const int textRegistoDe = 2131230750;
+			// aapt resource value: 0x7f080020
+			public const int textRegistoDe = 2131230752;
 			
 			// aapt resource value: 0x7f08000e
 			public const int textView1 = 2131230734;
@@ -433,11 +445,11 @@ namespace GeoPartner
 			// aapt resource value: 0x7f080012
 			public const int textView3 = 2131230738;
 			
-			// aapt resource value: 0x7f08001a
-			public const int textView4 = 2131230746;
-			
 			// aapt resource value: 0x7f08001c
-			public const int textView5 = 2131230748;
+			public const int textView4 = 2131230748;
+			
+			// aapt resource value: 0x7f08001e
+			public const int textView5 = 2131230750;
 			
 			// aapt resource value: 0x7f080009
 			public const int wide = 2131230729;

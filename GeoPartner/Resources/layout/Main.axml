@@ -9,26 +9,11 @@
         android:id="@+id/imageView1"
         android:layout_marginBottom="100dp"
         android:layout_marginTop="30dp" />
-    <EditText
-        android:layout_height="wrap_content"
-        android:layout_below="@id/imageView1"
-        android:id="@+id/editText1"
-        android:layout_alignParentTop="false"
-        android:layout_centerHorizontal="true"
-        android:editable="false"
-        android:layout_width="300dp" />
-    <Button
-        android:text="Procurar"
-        android:layout_width="116.0dp"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/editText1"
-        android:id="@+id/button1"
-        android:layout_below="@id/imageView1" />
     <Button
         android:text="Iniciar Percurso"
         android:layout_width="300dp"
         android:layout_height="75.5dp"
-        android:layout_below="@id/editText1"
+        android:layout_below="@id/imageView1"
         android:id="@+id/button2"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="60dp"

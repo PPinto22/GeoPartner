@@ -1,10 +1,11 @@
 using Android.Gms.Maps.Model;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Xml;
 
 namespace GeoPartner.Business
 {
@@ -34,6 +35,31 @@ namespace GeoPartner.Business
             this.notas = notas;
             this.websites = websites;
             this.terminada = false;
+        }
+
+        public void writeXML(XmlWriter writer)
+        {
+            writer.WriteStartElement("atividade");
+
+            //localizacao
+            writer.WriteStartElement("localizacao");
+            writer.WriteStartAttribute("longitude");
+            writer.WriteString(coordenadas.Longitude.ToString(CultureInfo.InvariantCulture.NumberFormat));
+            writer.WriteEndAttribute();
+            writer.WriteStartAttribute("latitude");
+            writer.WriteString(coordenadas.Latitude.ToString(CultureInfo.InvariantCulture.NumberFormat));
+            writer.WriteEndAttribute();
+            writer.WriteEndElement();
+
+            //Objetivos
+            writer.WriteStartElement("objetivos");
+            writer.WriteString(this.objetivos);
+            writer.WriteEndElement();
+
+            //Registo
+            this.registo.writeXML(writer);
+
+            writer.WriteEndElement(); // </atividade>
         }
     }
 }

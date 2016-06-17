@@ -299,37 +299,43 @@ containing a value of this type.
         public static int icon=0x7f02002b;
     }
     public static final class id {
+        public static int absoluteLayout1=0x7f080023;
         public static int adjust_height=0x7f080005;
         public static int adjust_width=0x7f080006;
         public static int auto=0x7f08000a;
-        public static int button1=0x7f08001e;
-        public static int button2=0x7f08001f;
+        public static int button1=0x7f080021;
+        public static int button2=0x7f080025;
+        public static int buttonGuardar=0x7f080024;
+        public static int buttonRegisto=0x7f080016;
+        public static int buttonTerminar=0x7f080014;
+        public static int buttonTipoRegisto=0x7f080022;
         public static int dark=0x7f08000b;
-        public static int editText1=0x7f080017;
-        public static int editText2=0x7f080018;
-        public static int editText4=0x7f08001b;
-        public static int editText5=0x7f08001d;
-        public static int editText6=0x7f080019;
+        public static int editText1=0x7f080019;
+        public static int editText2=0x7f08001a;
+        public static int editText3=0x7f08001b;
+        public static int editText4=0x7f08001d;
+        public static int editText5=0x7f08001f;
         public static int hybrid=0x7f080000;
         public static int icon_only=0x7f080007;
-        public static int imageView1=0x7f080016;
-        public static int infoButton=0x7f080015;
+        public static int imageView1=0x7f080018;
+        public static int infoButton=0x7f080017;
         public static int light=0x7f08000c;
         public static int linearLayout1=0x7f08000d;
         public static int listViewWebsites=0x7f080013;
-        public static int map=0x7f080014;
         public static int none=0x7f080001;
         public static int normal=0x7f080002;
         public static int notas=0x7f080011;
         public static int objetivos=0x7f08000f;
         public static int satellite=0x7f080003;
         public static int standard=0x7f080008;
+        public static int surfaceView1=0x7f080015;
         public static int terrain=0x7f080004;
+        public static int textRegistoDe=0x7f080020;
         public static int textView1=0x7f08000e;
         public static int textView2=0x7f080010;
         public static int textView3=0x7f080012;
-        public static int textView4=0x7f08001a;
-        public static int textView5=0x7f08001c;
+        public static int textView4=0x7f08001c;
+        public static int textView5=0x7f08001e;
         public static int wide=0x7f080009;
     }
     public static final class integer {
