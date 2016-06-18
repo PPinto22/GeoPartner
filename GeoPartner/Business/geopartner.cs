@@ -64,14 +64,27 @@ namespace GeoPartner.Business
 
         public string writeXML()
         {
-            StringBuilder sb = new StringBuilder();
+            StringWriterWithEncoding sw = new StringWriterWithEncoding(Encoding.UTF8);
 
             XmlWriterSettings ws = new XmlWriterSettings();
             ws.Indent = true;
-            ws.Encoding = Encoding.UTF8;
-            using (XmlWriter writer = XmlWriter.Create(sb, ws))
+
+            using (XmlWriter writer = XmlWriter.Create(sw, ws))
             {
                 writer.WriteStartElement("sessao");
+
+                writer.WriteStartElement("data");
+
+                DateTime data = DateTime.Now;
+
+                writer.WriteAttributeString("ano", data.Year.ToString());
+                writer.WriteAttributeString("mes", data.Month.ToString());
+                writer.WriteAttributeString("dia", data.Day.ToString());
+                writer.WriteAttributeString("hora", data.Hour.ToString());
+                writer.WriteAttributeString("minuto", data.Minute.ToString());
+
+                writer.WriteEndElement(); //</data>
+
                 foreach (atividade a in this.atividades)
                 {
                     if (a.terminada)
@@ -82,7 +95,7 @@ namespace GeoPartner.Business
                 writer.WriteEndElement();
             }
 
-            return sb.ToString();
+            return sw.ToString();
         }
 
         public void readXML(XmlDocument xmlDoc)

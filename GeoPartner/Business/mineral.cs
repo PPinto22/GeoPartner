@@ -31,7 +31,7 @@ namespace BackOffice.Business
 
         public void writeXML(XmlWriter writer)
         {
-            writer.WriteStartElement("rocha");
+            writer.WriteStartElement("mineral");
 
             writer.WriteStartElement("designacao");
             writer.WriteString(this.designacao);
@@ -49,7 +49,7 @@ namespace BackOffice.Business
             writer.WriteString(this.cor);
             writer.WriteEndElement();//</cor>
 
-            writer.WriteEndElement(); //</rocha>
+            writer.WriteEndElement(); //</mineral>
         }
     }
 }

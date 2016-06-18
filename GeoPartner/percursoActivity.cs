@@ -18,7 +18,7 @@ using System.IO;
 namespace GeoPartner
 {
     [Activity(Label = "Percurso")]
-    public class percursoActivity : Activity/*, IOnMapReadyCallback*/
+    public class percursoActivity : Activity, IOnMapReadyCallback
     {
         private GoogleMap mMap;
         private geopartner gp;
@@ -44,7 +44,7 @@ namespace GeoPartner
             this.buttonRegisto.Click += ButtonRegisto_Click;
 
 
-            //SetUpMap();
+            SetUpMap();
         }
 
         private void ButtonRegisto_Click(object sender, EventArgs e)
@@ -144,21 +144,20 @@ namespace GeoPartner
 
         public override void OnBackPressed()
         {
-            //Toast.MakeText(this, "Back button", ToastLength.Short).Show();
         }
 
 
-        //public void OnMapReady(GoogleMap googleMap)
-        //{
-        //    mMap = googleMap;
-        //}
+        public void OnMapReady(GoogleMap googleMap)
+        {
+            mMap = googleMap;
+        }
 
-        //private void SetUpMap()
-        //{
-        //    if(mMap == null)
-        //    {
-        //        FragmentManager.FindFragmentById<MapFragment>(Resource.Id.fragment1).GetMapAsync(this);
-        //    }
-        //}
+        private void SetUpMap()
+        {
+            if (mMap == null)
+            {
+                FragmentManager.FindFragmentById<MapFragment>(Resource.Id.map).GetMapAsync(this);
+            }
+        }
     }
 }

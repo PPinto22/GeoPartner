@@ -13,7 +13,6 @@ using Android.Graphics;
 using BackOffice.Business;
 using System.IO;
 using Android.Media;
-using Java.IO;
 using System.Xml;
 
 namespace GeoPartner
@@ -56,12 +55,16 @@ namespace GeoPartner
             this.voz = voz;
         }
 
-        public static byte[] imageToByteArray(Bitmap imageIn)
+        public static byte[] imageToByteArray(Bitmap bitmap)
         {
-            MemoryStream stream = new MemoryStream();
-            imageIn.Compress(Bitmap.CompressFormat.Jpeg, 0, stream);
-            byte[] bitmapData = stream.ToArray();
+            byte[] bitmapData;
+            using (var stream = new MemoryStream())
+            {
+                bitmap.Compress(Bitmap.CompressFormat.Jpeg, 0, stream);
+                bitmapData = stream.ToArray();
+            }
             return bitmapData;
+
         }
 
         public void writeXML(XmlWriter writer)
