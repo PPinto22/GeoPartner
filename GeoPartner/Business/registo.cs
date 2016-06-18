@@ -24,6 +24,7 @@ namespace GeoPartner
         public const int MINERAL = 1;
         public const int ND = -1;
         public byte[] foto { get; set; }
+        public byte[] voz { get; set; }
         public int tipo { get; set; }
 
         public rocha rocha { get; set; }
@@ -35,22 +36,24 @@ namespace GeoPartner
             this.tipo = ND;
         }
 
-        public registo(rocha rocha, Bitmap foto)
+        public registo(rocha rocha, Bitmap foto, byte[] voz)
         {
             this.tipo = ROCHA;
             this.rocha = rocha;
             if (foto != null)
                 this.foto = registo.imageToByteArray(foto);
             else this.foto = null;
+            this.voz = voz;
         }
 
-        public registo(mineral mineral, Bitmap foto)
+        public registo(mineral mineral, Bitmap foto, byte[] voz)
         {
             this.tipo = MINERAL;
             this.mineral = mineral;
             if (foto != null)
                 this.foto = registo.imageToByteArray(foto);
             else this.foto = null;
+            this.voz = voz;
         }
 
         public static byte[] imageToByteArray(Bitmap imageIn)
@@ -74,10 +77,10 @@ namespace GeoPartner
             writer.WriteEndElement(); //</fotografias>
 
             writer.WriteStartElement("voz");
-            //if (this.voz != null)
-            //{
-            //    writer.WriteString(Convert.ToBase64String(this.voz));
-            //}
+            if (this.voz != null)
+            {
+                writer.WriteString(Convert.ToBase64String(this.voz));
+            }
             writer.WriteEndElement(); //</voz>
 
             if(this.tipo == ROCHA)

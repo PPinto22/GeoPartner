@@ -26,7 +26,7 @@
         android:layout_below="@id/imageView1"
         android:id="@+id/linearLayout1">
         <TextView
-            android:text="Designacao"
+            android:text="Designação"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -37,7 +37,11 @@
             android:layout_height="wrap_content"
             android:id="@+id/editText1"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp" />
+            android:layout_marginRight="10dp"
+            android:capitalize="sentences"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:imeOptions="actionNext" />
         <TextView
             android:text="Tipo"
             android:textAppearance="?android:attr/textAppearanceMedium"
@@ -50,9 +54,13 @@
             android:layout_height="wrap_content"
             android:id="@+id/editText2"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp" />
+            android:layout_marginRight="10dp"
+            android:capitalize="sentences"
+            android:maxLines="1"
+            android:imeOptions="actionNext"
+            android:singleLine="true" />
         <TextView
-            android:text="Peso"
+            android:text="Peso (Kg)"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -65,7 +73,11 @@
             android:layout_height="wrap_content"
             android:id="@+id/editText3"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp" />
+            android:layout_marginRight="10dp"
+            android:capitalize="sentences"
+            android:maxLines="1"
+            android:imeOptions="actionNext"
+            android:singleLine="true" />
         <TextView
             android:text="Textura"
             android:textAppearance="?android:attr/textAppearanceMedium"
@@ -78,7 +90,11 @@
             android:layout_height="wrap_content"
             android:id="@+id/editText4"
             android:layout_marginRight="10dp"
-            android:layout_marginLeft="10dp" />
+            android:layout_marginLeft="10dp"
+            android:capitalize="sentences"
+            android:maxLines="1"
+            android:imeOptions="actionNext"
+            android:singleLine="true" />
         <TextView
             android:text="Cor"
             android:textAppearance="?android:attr/textAppearanceMedium"
@@ -86,13 +102,17 @@
             android:layout_height="wrap_content"
             android:id="@+id/textView5"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp" />
+            android:layout_marginRight="10dp"
+            android:singleLine="true" />
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/editText5"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp" />
+            android:layout_marginRight="10dp"
+            android:capitalize="sentences"
+            android:maxLines="1"
+            android:imeOptions="actionNext" />
     </LinearLayout>
     <TextView
         android:text="Registo de Rocha"
@@ -118,17 +138,37 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/button1"
         android:id="@+id/buttonTipoRegisto" />
-    <AbsoluteLayout
-        android:minWidth="25px"
-        android:minHeight="25px"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/linearLayout1"
-        android:id="@+id/absoluteLayout1" />
-    <Button
-        android:text="Guardar Registo"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/linearLayout1"
-        android:id="@+id/buttonGuardar" />
+        android:id="@+id/linearLayout2"
+        android:layout_marginTop="5dp">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/linearLayout3">
+            <Button
+                android:text="Gravar voz"
+                android:id="@+id/buttonVoz"
+                android:layout_width="250dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="10dp" />
+            <TextView
+                android:text="Medium Text"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/textVoz"
+                android:gravity="center"
+                android:layout_marginLeft="10dp" />
+        </LinearLayout>
+        <Button
+            android:text="Guardar Registo"
+            android:id="@+id/buttonGuardar"
+            android:layout_width="match_parent"
+            android:layout_height="100dp" />
+    </LinearLayout>
 </RelativeLayout>

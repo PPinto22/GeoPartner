@@ -25,7 +25,10 @@ namespace GeoPartner.Business
             this.atividadeAtual = 0;
         }
 
-
+        public bool isEmpty()
+        {
+            return this.atividadeAtual == 0;
+        }
 
         public void addAtividade(atividade a)
         {
@@ -71,7 +74,10 @@ namespace GeoPartner.Business
                 writer.WriteStartElement("sessao");
                 foreach (atividade a in this.atividades)
                 {
-                    a.writeXML(writer);
+                    if (a.terminada)
+                    {
+                        a.writeXML(writer);
+                    }
                 }
                 writer.WriteEndElement();
             }
@@ -95,13 +101,11 @@ namespace GeoPartner.Business
                     double longitude, latitude;
                     if (localizacao == null || localizacao.Attributes == null) throw new XmlException();
                     var attr = localizacao.Attributes["longitude"];
-                    if (attr != null) longitude = double.Parse(attr.Value);
+                    if (attr != null) longitude = double.Parse(attr.InnerText);
                     else throw new XmlException();
                     attr = localizacao.Attributes["latitude"];
-                    if (attr != null) latitude = double.Parse(attr.Value);
+                    if (attr != null) latitude = double.Parse(attr.InnerText);
                     else throw new XmlException();
-
-                    LatLng coordenadas = new LatLng(latitude, longitude);
 
                     XmlNode nodo_objetivos = atividade.SelectSingleNode("objetivos");
                     if (nodo_objetivos == null) throw new XmlException();
@@ -127,7 +131,7 @@ namespace GeoPartner.Business
                         }
                     }
 
-                    atividade atv = new atividade(coordenadas, objetivos, notas, links);
+                    atividade atv = new atividade(latitude, longitude, objetivos, notas, links);
                     this.atividades.Add(atv);
                 }
             }

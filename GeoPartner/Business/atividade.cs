@@ -12,6 +12,8 @@ namespace GeoPartner.Business
     class atividade
     {
         public LatLng coordenadas { get; set; }
+        public double latitude { get; set; }
+        public double longitude { get; set; }
         public string objetivos { get; set; }
         public string notas { get; set; }
         public List<string> websites { get; set; }
@@ -21,20 +23,28 @@ namespace GeoPartner.Business
 
         public atividade()
         {
-            this.coordenadas = new LatLng(0.0,0.0);
+            this.latitude = 0;
+            this.longitude = 0;
             this.objetivos = string.Empty;
             this.notas = string.Empty;
             this.websites = new List<string>();
             this.terminada = false;
         }
 
-        public atividade(LatLng coordenadas, string objetivos, string notas, List<string> websites)
+        public atividade(double lat, double lng, string objetivos, string notas, List<string> websites)
         {
+            this.latitude = lat;
+            this.longitude = lng;
             this.coordenadas = coordenadas;
             this.objetivos = objetivos;
             this.notas = notas;
             this.websites = websites;
             this.terminada = false;
+        }
+
+        public LatLng getCoordenadas()
+        {
+            return new LatLng(this.latitude, this.longitude);
         }
 
         public void writeXML(XmlWriter writer)
@@ -44,10 +54,10 @@ namespace GeoPartner.Business
             //localizacao
             writer.WriteStartElement("localizacao");
             writer.WriteStartAttribute("longitude");
-            writer.WriteString(coordenadas.Longitude.ToString(CultureInfo.InvariantCulture.NumberFormat));
+            writer.WriteString(this.longitude.ToString(CultureInfo.InvariantCulture.NumberFormat));
             writer.WriteEndAttribute();
             writer.WriteStartAttribute("latitude");
-            writer.WriteString(coordenadas.Latitude.ToString(CultureInfo.InvariantCulture.NumberFormat));
+            writer.WriteString(this.latitude.ToString(CultureInfo.InvariantCulture.NumberFormat));
             writer.WriteEndAttribute();
             writer.WriteEndElement();
 

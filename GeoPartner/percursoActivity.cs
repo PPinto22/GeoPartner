@@ -13,6 +13,7 @@ using Android.Gms.Maps;
 using GeoPartner.Business;
 using Newtonsoft.Json;
 using Android.Graphics;
+using System.IO;
 
 namespace GeoPartner
 {
@@ -48,7 +49,8 @@ namespace GeoPartner
 
         private void ButtonRegisto_Click(object sender, EventArgs e)
         {
-            var registoActivity = new Intent(this, typeof(registoActivity));
+            Intent registoActivity = new Intent(this, typeof(registoActivity));
+            registoActivity.AddFlags(ActivityFlags.ClearTop);
             registoActivity.PutExtra("Atividade", JsonConvert.SerializeObject(gp.getAtividadeAtual()));
             StartActivityForResult(registoActivity, 1000);
         }
@@ -58,17 +60,29 @@ namespace GeoPartner
             if (!this.gp.terminado())
             {
                 new AlertDialog.Builder(this)
-                .SetPositiveButton("Yes", (sender2, args) =>
+                .SetPositiveButton("Sim", (sender2, args) =>
                 {
-                    // TODO
+                    if (this.gp.isEmpty())
+                    {
+                        Toast.MakeText(this, "Percurso cancelado", ToastLength.Long).Show();
+                        Finish();
+                    }
+                    else
+                    {
+                        this.terminar();
+                    }
                 })
-                .SetNegativeButton("No", (sender2, args) =>
+                .SetNegativeButton("Não", (sender2, args) =>
                 {
 
                 })
                 .SetMessage(String.Format("Existem {0} atividades por completar.\nTerminar o percurso?", this.gp.porCompletar()))
                 .SetTitle("Aviso")
                 .Show();
+            }
+            else
+            {
+                this.terminar();
             }
         }
 
@@ -82,13 +96,13 @@ namespace GeoPartner
                     {
                         registo reg = JsonConvert.DeserializeObject<registo>(data.GetStringExtra("Registo"));
                         this.gp.getAtividadeAtual().registo = reg;
+                        this.gp.getAtividadeAtual().terminada = true;
                         this.gp.atividadeAtual++;
                         this.updateTextoAtividadeAtual();
                         if (gp.terminado())
                         {
                             Toast.MakeText(this, "Percurso Terminado", ToastLength.Short).Show();
-                            this.buttonRegisto.Background.SetTint(Color.ParseColor("#808080"));
-                            this.buttonRegisto.Clickable = false;
+                            this.buttonRegisto.Enabled = false;
                         }
                         else
                         {
@@ -99,9 +113,26 @@ namespace GeoPartner
             }
         }
 
+        private void terminar()
+        {
+            string path = Android.OS.Environment.ExternalStorageDirectory.Path + "/GeoPartner/";
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+                Toast.MakeText(this, "diretoria criada: " + path, ToastLength.Long).Show();
+            }
+            StreamWriter sw = new StreamWriter(new FileStream(path + "dados.gp", FileMode.Create));
+            sw.Write(gp.writeXML());
+            sw.Close();
+
+            Toast.MakeText(this, "Ficheiro criado em " + path + "dados.gp", ToastLength.Long).Show();
+            Finish();
+
+        }
+
         private void updateTextoAtividadeAtual()
         {
-            if(this.gp.atividadeAtual > this.gp.atividades.Count)
+            if(this.gp.atividadeAtual >= this.gp.atividades.Count)
             {
                 this.textView1.Text = "Percurso terminado";
             }

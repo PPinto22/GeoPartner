@@ -18,7 +18,8 @@ namespace GeoPartner
     public class MainActivity : Activity
     {
         private geopartner gp;
-        private string file_path = "/sdcard/Android/data/GeoPartner.GeoPartner/percurso.gp";
+        private string file_path = Android.OS.Environment.ExternalStorageDirectory.Path + "/GeoPartner/percurso.gp";
+
 
 
         protected override void OnCreate(Bundle bundle)
@@ -27,6 +28,12 @@ namespace GeoPartner
             base.OnCreate(bundle);
             gp = new geopartner();
 
+            string path = Android.OS.Environment.ExternalStorageDirectory.Path + "/GeoPartner/";
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.Main);
 
@@ -34,13 +41,13 @@ namespace GeoPartner
 
             iniciar.Click += delegate
             {
-
                 if (File.Exists(file_path))
                 {
                     try
                     {
                         XmlDocument doc = new XmlDocument();
                         doc.Load(file_path);
+                        gp = new geopartner();
                         gp.readXML(doc);
 
                         var percursoActivity = new Intent(this, typeof(percursoActivity));
@@ -50,32 +57,17 @@ namespace GeoPartner
                     }
                     catch (Exception ex)
                     {
-                        Toast.MakeText(this, "Configuração de percurso inválida", ToastLength.Long).Show();
+                        Toast.MakeText(this, "Ficheiro "+file_path+" inválido.", ToastLength.Long).Show();
 
                     }
                 }
                 else
                 {
-                    Toast.MakeText(this, "Ficheiro percurso.gp não foi encontrado na diretoria Android/data/GeoPartner.GeoPartner", ToastLength.Short).Show();
+      
+                    Toast.MakeText(this, "Ficheiro " + file_path +" não foi encontrado.", ToastLength.Short).Show();
                 }
             };
         }
-
-        //protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
-        //{
-        //    base.OnActivityResult(requestCode, resultCode, data);
-        //    switch (requestCode)
-        //    {
-        //        case 1000: //Fim percurso
-        //            if (resultCode == Result.Ok)
-        //            {
-        //                registo reg = JsonConvert.DeserializeObject<registo>(data.GetStringExtra("Registo"));
-        //                Toast.MakeText(this, "Registo guardado", ToastLength.Short).Show();
-        //            }
-        //            break;
-        //    }
-        //}
-
     }
 }
 

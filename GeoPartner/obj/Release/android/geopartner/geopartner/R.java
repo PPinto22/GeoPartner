@@ -299,16 +299,16 @@ containing a value of this type.
         public static final int icon=0x7f02002b;
     }
     public static final class id {
-        public static final int absoluteLayout1=0x7f080023;
         public static final int adjust_height=0x7f080005;
         public static final int adjust_width=0x7f080006;
         public static final int auto=0x7f08000a;
         public static final int button1=0x7f080021;
-        public static final int button2=0x7f080025;
-        public static final int buttonGuardar=0x7f080024;
+        public static final int button2=0x7f080028;
+        public static final int buttonGuardar=0x7f080027;
         public static final int buttonRegisto=0x7f080016;
         public static final int buttonTerminar=0x7f080014;
         public static final int buttonTipoRegisto=0x7f080022;
+        public static final int buttonVoz=0x7f080025;
         public static final int dark=0x7f08000b;
         public static final int editText1=0x7f080019;
         public static final int editText2=0x7f08001a;
@@ -321,6 +321,8 @@ containing a value of this type.
         public static final int infoButton=0x7f080017;
         public static final int light=0x7f08000c;
         public static final int linearLayout1=0x7f08000d;
+        public static final int linearLayout2=0x7f080023;
+        public static final int linearLayout3=0x7f080024;
         public static final int listViewWebsites=0x7f080013;
         public static final int none=0x7f080001;
         public static final int normal=0x7f080002;
@@ -336,6 +338,7 @@ containing a value of this type.
         public static final int textView3=0x7f080012;
         public static final int textView4=0x7f08001c;
         public static final int textView5=0x7f08001e;
+        public static final int textVoz=0x7f080026;
         public static final int wide=0x7f080009;
     }
     public static final class integer {
