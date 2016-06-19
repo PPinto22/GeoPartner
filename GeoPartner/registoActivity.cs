@@ -49,16 +49,16 @@ namespace GeoPartner
         private bool existeGravacao;
 
         // Foto
-        private Bitmap foto;
         private File _dir;
         private File _file;
+        private File _fileAnterior;
+        private string path_foto;
 
         // Audio
         private AudioRecord _recorder;
         private MediaPlayer _player;
         private byte[] audioBuffer;
-        private int audioData;
-        private string path_voz = Android.OS.Environment.ExternalStorageDirectory.Path + "/GeoPartner/voz.wav";
+        private string path_voz;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -167,71 +167,94 @@ namespace GeoPartner
         public void RecordAudio()
         {
             try
-            { 
-            File fich_voz = new File(path_voz);
-            if (fich_voz.Exists())
             {
-                fich_voz.Delete();
-            }
-            System.IO.Stream outputStream = System.IO.File.Open(path_voz, System.IO.FileMode.Create);
-            System.IO.BinaryWriter bWriter = new System.IO.BinaryWriter(outputStream);
-
-            audioBuffer = new byte[8000];
-
-
-            this._recorder = new AudioRecord(
-                // Hardware source of recording.
-                AudioSource.Mic,
-                // Frequency
-                44100,
-                // Mono or stereo
-                ChannelIn.Mono,
-                // Audio encoding
-                Android.Media.Encoding.Pcm16bit,
-                // Length of the audio clip.
-                audioBuffer.Length
-            );
-
-            long totalAudioLen = 0;
-            long totalDataLen = totalAudioLen + 36;
-            long longSampleRate = 44100;
-            int channels = 2;
-            long byteRate = 16 * longSampleRate * channels / 8;
-
-            totalAudioLen = audioBuffer.Length;
-            totalDataLen = totalAudioLen + 36;
-
-            WriteWaveFileHeader(
-                bWriter,
-                totalAudioLen,
-                totalDataLen,
-                longSampleRate,
-                channels,
-                byteRate);
-
-            this._recorder.StartRecording();
-
-            while (this.recording == true)
-            {
-                try
+                File fich_voz = new File(path_voz);
+                if (fich_voz.Exists())
                 {
-                    /// Keep reading the buffer while there is audio input.
-                    audioData = this._recorder.Read(audioBuffer, 0, audioBuffer.Length);
-
-                    bWriter.Write(audioBuffer);
-                }
-                catch (System.Exception ex)
-                {
-                    System.Console.Out.WriteLine(ex.Message);
-                    break;
+                    fich_voz.Delete();
                 }
             }
-            outputStream.Close();
-            bWriter.Close();
+            catch
+            {
+
+            }
+            try { 
+                this.path_voz = Android.OS.Environment.ExternalStorageDirectory.Path + String.Format("/GeoPartner/voz{0}.wav", Guid.NewGuid());
+                File fich_voz = new File(path_voz);
+                System.IO.Stream outputStream = System.IO.File.Open(path_voz, System.IO.FileMode.Create);
+                System.IO.BinaryWriter bWriter = new System.IO.BinaryWriter(outputStream);
+
+                audioBuffer = new byte[8000];
+
+                this._recorder = new AudioRecord(
+                    // Hardware source of recording.
+                    AudioSource.Mic,
+                    // Frequency
+                    44100,
+                    // Mono or stereo
+                    ChannelIn.Mono,
+                    // Audio encoding
+                    Android.Media.Encoding.Pcm16bit,
+                    // Length of the audio clip.
+                    audioBuffer.Length
+                );
+
+                long totalAudioLen = 0;
+                long totalDataLen = totalAudioLen + 36;
+                long longSampleRate = 44100;
+                int channels = 1;
+                long byteRate = 16 * longSampleRate * channels  / 8;
+
+                totalAudioLen = audioBuffer.Length;
+                totalDataLen = totalAudioLen + 36;
+
+                WriteWaveFileHeader(
+                    bWriter,
+                    totalAudioLen,
+                    totalDataLen,
+                    longSampleRate,
+                    channels,
+                    byteRate);
+
+                this._recorder.StartRecording();
+
+                while (this.recording == true)
+                {
+                    try
+                    {
+                        /// Keep reading the buffer while there is audio input.
+                        int lidos = this._recorder.Read(audioBuffer, 0, audioBuffer.Length);
+                        totalAudioLen += lidos;
+                        totalDataLen += lidos;
+
+                        bWriter.Write(audioBuffer);
+                    }
+                    catch (System.Exception ex)
+                    {
+                        System.Console.Out.WriteLine(ex.Message);
+                        break;
+                    }
+                }
+
+                outputStream.Close();
+                bWriter.Close();
+
+                outputStream = System.IO.File.Open(path_voz, System.IO.FileMode.Open);
+                bWriter = new System.IO.BinaryWriter(outputStream);
+
+                WriteWaveFileHeader(
+                    bWriter,
+                    totalAudioLen,
+                    totalDataLen,
+                    longSampleRate,
+                    channels,
+                    byteRate);
+
+                outputStream.Close();
+                bWriter.Close();
             }
             catch (Exception ex)
             {
-                Toast.MakeText(this, "Impossível gravar voz", ToastLength.Short).Show();
                 this.buttonVoz.Background.SetTint(Color.ParseColor("#727778"));
                 this.buttonVoz.Text = "Nova gravação";
                 this.textVoz.Text = string.Empty;
@@ -304,7 +327,7 @@ namespace GeoPartner
         {
             if(this.rochaOuMineral == 0) // rocha
             {
-                return this.foto == null &&
+                return String.IsNullOrEmpty(this.path_foto) &&
                 this.editText1.Text == string.Empty &&
                 this.editText2.Text == string.Empty &&
                 this.editText3.Text == string.Empty &&
@@ -314,7 +337,7 @@ namespace GeoPartner
             }
             else // mineral
             {
-                return this.foto == null &&
+                return String.IsNullOrEmpty(this.path_foto) &&
                 this.editText1.Text == string.Empty &&
                 this.editText2.Text == string.Empty &&
                 this.editText3.Text == string.Empty &&
@@ -327,7 +350,7 @@ namespace GeoPartner
         {
             if (this.rochaOuMineral == 0) // rocha
             {
-                return this.foto != null &&
+                return String.IsNullOrEmpty(this.path_foto) &&
                 this.editText1.Text != string.Empty &&
                 this.editText2.Text != string.Empty &&
                 this.editText3.Text != string.Empty &&
@@ -337,7 +360,7 @@ namespace GeoPartner
             }
             else // mineral
             {
-                return this.foto != null &&
+                return !String.IsNullOrEmpty(this.path_foto) &&
                 this.editText1.Text != string.Empty &&
                 this.editText2.Text != string.Empty &&
                 this.editText3.Text != string.Empty &&
@@ -354,13 +377,6 @@ namespace GeoPartner
             }
             else
             {
-                byte[] voz = null;
-                try
-                {
-                    voz = System.IO.File.ReadAllBytes(path_voz);
-                    //System.IO.File.Delete(path_voz);
-                }
-                catch { }
                 registo reg;
                 if(this.rochaOuMineral == 0) // rocha
                 {
@@ -379,7 +395,7 @@ namespace GeoPartner
                     string cor = editText5.Text;
                     rocha r = new rocha(designacao,tipo,peso,textura,cor);
 
-                    reg = new registo(r, this.foto, voz);
+                    reg = new registo(r, this.path_foto, this.path_voz);
                 }
                 else // mineral
                 {
@@ -397,7 +413,7 @@ namespace GeoPartner
                     string cor = editText4.Text;
                     mineral m = new mineral(designacao, risca, peso, cor);
 
-                    reg = new registo(m, this.foto, voz);
+                    reg = new registo(m, this.path_foto, this.path_voz);
                 }
 
                 Intent intent = new Intent(this, typeof(percursoActivity));
@@ -443,9 +459,7 @@ namespace GeoPartner
 
         private void CreateDirectoryForPictures()
         {
-            this._dir = new File(
-                Android.OS.Environment.GetExternalStoragePublicDirectory(
-                    Android.OS.Environment.DirectoryPictures), "GeoPartnerFotos");
+            this._dir = new File(Android.OS.Environment.ExternalStorageDirectory.Path + "/GeoPartner/");
             if (!this._dir.Exists())
             {
                 this._dir.Mkdirs();
@@ -456,6 +470,7 @@ namespace GeoPartner
         {
             CreateDirectoryForPictures();
             Intent intent = new Intent(MediaStore.ActionImageCapture);
+            this._fileAnterior = this._file;
             this._file = new File(this._dir, String.Format("foto_{0}.jpg", Guid.NewGuid()));
             intent.PutExtra(MediaStore.ExtraOutput, Android.Net.Uri.FromFile(this._file));
 
@@ -470,14 +485,17 @@ namespace GeoPartner
             {
                 if (resultCode == Result.Ok)
                 {
+                    if(this._fileAnterior != null && this._fileAnterior.Exists())
+                    {
+                        this._fileAnterior.Delete();
+                    }
                     Android.Net.Uri imageUri = Android.Net.Uri.FromFile(this._file);
 
                     int height = Resources.DisplayMetrics.HeightPixels;
                     int width = this.imageView1.Height;
                     Bitmap largeBitmap = MediaStore.Images.Media.GetBitmap(this.ContentResolver, imageUri);
                     Bitmap redim = Bitmap.CreateScaledBitmap(largeBitmap, 520, 550, true);
-                    this.foto = redim;
-                    if (this.foto != null)
+                    if (redim != null)
                     {
                         this.imageView1.SetImageBitmap(redim);
                     }
@@ -486,6 +504,14 @@ namespace GeoPartner
                     GC.Collect();
                     File ficheiroFoto = new File(imageUri.Path);
                     ficheiroFoto.Delete();
+
+                    this.path_foto = Android.OS.Environment.ExternalStorageDirectory.Path + String.Format("/GeoPartner/foto_{0}.jpg", Guid.NewGuid());
+                    System.IO.Stream os = System.IO.File.Open(path_foto, System.IO.FileMode.Create);
+                    System.IO.BinaryWriter bw = new System.IO.BinaryWriter(os);
+                    bw.Write(registo.imageToByteArray(Bitmap.CreateScaledBitmap(largeBitmap,1200,1200,true)));
+                    bw.Flush();
+                    bw.Close();
+                    os.Close();
                 }
             }
         }

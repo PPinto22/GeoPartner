@@ -46,5 +46,6 @@ C:\Users\pedro\documents\visual studio 2015\Projects\GeoPartner\GeoPartner\obj\D
 C:\Users\pedro\documents\visual studio 2015\Projects\GeoPartner\GeoPartner\obj\Debug\android\assets\System.ServiceModel.Internals.dll.mdb
 C:\Users\pedro\documents\visual studio 2015\Projects\GeoPartner\GeoPartner\obj\Debug\android\assets\System.Xml.dll.mdb
 C:\Users\pedro\documents\visual studio 2015\Projects\GeoPartner\GeoPartner\obj\Debug\android\assets\System.Xml.Linq.dll.mdb
+C:\Users\pedro\documents\visual studio 2015\Projects\GeoPartner\GeoPartner\obj\Debug\GeoPartner.csprojResolveAssemblyReference.cache
 C:\Users\pedro\documents\visual studio 2015\Projects\GeoPartner\GeoPartner\obj\Debug\GeoPartner.dll.mdb
 C:\Users\pedro\documents\visual studio 2015\Projects\GeoPartner\GeoPartner\bin\Debug\GeoPartner.dll.mdb

@@ -22,8 +22,8 @@ namespace GeoPartner
         public const int ROCHA = 0;
         public const int MINERAL = 1;
         public const int ND = -1;
-        public byte[] foto { get; set; }
-        public byte[] voz { get; set; }
+        public string foto { get; set; } // path para ficheiro .jpg
+        public string voz { get; set; } // path para ficheiro .wav
         public int tipo { get; set; }
 
         public rocha rocha { get; set; }
@@ -35,23 +35,19 @@ namespace GeoPartner
             this.tipo = ND;
         }
 
-        public registo(rocha rocha, Bitmap foto, byte[] voz)
+        public registo(rocha rocha, string foto, string voz)
         {
             this.tipo = ROCHA;
             this.rocha = rocha;
-            if (foto != null)
-                this.foto = registo.imageToByteArray(foto);
-            else this.foto = null;
+            this.foto = foto;
             this.voz = voz;
         }
 
-        public registo(mineral mineral, Bitmap foto, byte[] voz)
+        public registo(mineral mineral, string foto, string voz)
         {
             this.tipo = MINERAL;
             this.mineral = mineral;
-            if (foto != null)
-                this.foto = registo.imageToByteArray(foto);
-            else this.foto = null;
+            this.foto = foto;
             this.voz = voz;
         }
 
@@ -60,7 +56,7 @@ namespace GeoPartner
             byte[] bitmapData;
             using (var stream = new MemoryStream())
             {
-                bitmap.Compress(Bitmap.CompressFormat.Jpeg, 80, stream);
+                bitmap.Compress(Bitmap.CompressFormat.Png, 0, stream);
                 bitmapData = stream.ToArray();
             }
             return bitmapData;
@@ -72,17 +68,22 @@ namespace GeoPartner
             writer.WriteStartElement("registo");
             writer.WriteStartElement("fotografias");
             writer.WriteStartElement("fotografia");
-            if (this.foto != null)
+            if (!String.IsNullOrEmpty(this.foto))
             {
-                writer.WriteString(Convert.ToBase64String(this.foto));
+                Bitmap bitmap_foto = BitmapFactory.DecodeFile(this.foto);
+                byte[] bytes_foto = registo.imageToByteArray(bitmap_foto);
+                writer.WriteString(Convert.ToBase64String(bytes_foto));
+                File.Delete(this.foto);
             }
             writer.WriteEndElement(); //</fotografia>
             writer.WriteEndElement(); //</fotografias>
 
             writer.WriteStartElement("voz");
-            if (this.voz != null)
+            if (!String.IsNullOrEmpty(this.voz))
             {
-                writer.WriteString(Convert.ToBase64String(this.voz));
+                byte[] bytes_voz = File.ReadAllBytes(this.voz);
+                writer.WriteString(Convert.ToBase64String(bytes_voz));
+                //File.Delete(this.voz);
             }
             writer.WriteEndElement(); //</voz>
 
