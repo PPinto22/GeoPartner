@@ -87,6 +87,7 @@
     <Compile Include="infoActivity.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="percursoActivity.cs" />
+    <Compile Include="registoActivity - Copy.cs" />
     <Compile Include="registoActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

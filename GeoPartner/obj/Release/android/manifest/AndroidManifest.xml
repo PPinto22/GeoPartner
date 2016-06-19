@@ -26,6 +26,7 @@
       </intent-filter>
     </activity>
     <activity android:label="Percurso" android:name="md53f275b8e4cd098ab120fb5526255d03f.percursoActivity" />
+    <activity android:label="Registo" android:name="md53f275b8e4cd098ab120fb5526255d03f.registoActivity2" />
     <activity android:label="Registo" android:name="md53f275b8e4cd098ab120fb5526255d03f.registoActivity" />
     <provider android:name="mono.MonoRuntimeProvider" android:exported="false" android:initOrder="2147483647" android:authorities="GeoPartner.GeoPartner.mono.MonoRuntimeProvider.__mono_init__" />
   </application>

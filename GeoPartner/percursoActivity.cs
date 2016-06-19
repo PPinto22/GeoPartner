@@ -18,9 +18,9 @@ using System.IO;
 namespace GeoPartner
 {
     [Activity(Label = "Percurso")]
-    public class percursoActivity : Activity, IOnMapReadyCallback
+    public class percursoActivity : Activity/*, IOnMapReadyCallback*/
     {
-        private GoogleMap mMap;
+        //private GoogleMap mMap;
         private geopartner gp;
         private Button buttonTerminar;
         private Button buttonRegisto;
@@ -32,7 +32,7 @@ namespace GeoPartner
 
             this.gp = JsonConvert.DeserializeObject<geopartner>(Intent.GetStringExtra("Percurso"));
 
-            SetContentView(Resource.Layout.layout_percurso);
+            SetContentView(Resource.Layout.layout_percurso_backup);
 
             this.textView1 = FindViewById<TextView>(Resource.Id.textView1);
             this.updateTextoAtividadeAtual();
@@ -44,7 +44,7 @@ namespace GeoPartner
             this.buttonRegisto.Click += ButtonRegisto_Click;
 
 
-            SetUpMap();
+            //SetUpMap();
         }
 
         private void ButtonRegisto_Click(object sender, EventArgs e)
@@ -147,17 +147,17 @@ namespace GeoPartner
         }
 
 
-        public void OnMapReady(GoogleMap googleMap)
-        {
-            mMap = googleMap;
-        }
+        //public void OnMapReady(GoogleMap googleMap)
+        //{
+        //    mMap = googleMap;
+        //}
 
-        private void SetUpMap()
-        {
-            if (mMap == null)
-            {
-                FragmentManager.FindFragmentById<MapFragment>(Resource.Id.map).GetMapAsync(this);
-            }
-        }
+        //private void SetUpMap()
+        //{
+        //    if (mMap == null)
+        //    {
+        //        FragmentManager.FindFragmentById<MapFragment>(Resource.Id.map).GetMapAsync(this);
+        //    }
+        //}
     }
 }

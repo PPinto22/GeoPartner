@@ -21,6 +21,7 @@ C:\Users\pedro\documents\visual studio 2015\Projects\GeoPartner\GeoPartner\obj\D
 C:\Users\pedro\documents\visual studio 2015\Projects\GeoPartner\GeoPartner\obj\Debug\res\values\theme.xml
 C:\Users\pedro\documents\visual studio 2015\Projects\GeoPartner\GeoPartner\obj\Debug\R.cs.flag
 C:\Users\pedro\documents\visual studio 2015\Projects\GeoPartner\GeoPartner\obj\Debug\uploadflags.txt
+C:\Users\pedro\documents\visual studio 2015\Projects\GeoPartner\GeoPartner\obj\Debug\res\layout\layout_percurso_backup.xml
 C:\Users\pedro\documents\visual studio 2015\Projects\GeoPartner\GeoPartner\bin\Debug\GeoPartner.dll.mdb
 C:\Users\pedro\documents\visual studio 2015\Projects\GeoPartner\GeoPartner\bin\Debug\Java.Interop.dll.mdb
 C:\Users\pedro\documents\visual studio 2015\Projects\GeoPartner\GeoPartner\bin\Debug\Mono.Android.dll.mdb
@@ -45,7 +46,5 @@ C:\Users\pedro\documents\visual studio 2015\Projects\GeoPartner\GeoPartner\obj\D
 C:\Users\pedro\documents\visual studio 2015\Projects\GeoPartner\GeoPartner\obj\Debug\android\assets\System.ServiceModel.Internals.dll.mdb
 C:\Users\pedro\documents\visual studio 2015\Projects\GeoPartner\GeoPartner\obj\Debug\android\assets\System.Xml.dll.mdb
 C:\Users\pedro\documents\visual studio 2015\Projects\GeoPartner\GeoPartner\obj\Debug\android\assets\System.Xml.Linq.dll.mdb
-C:\Users\pedro\documents\visual studio 2015\Projects\GeoPartner\GeoPartner\obj\Debug\res\layout\layout_percurso_backup.xml
-C:\Users\pedro\documents\visual studio 2015\Projects\GeoPartner\GeoPartner\obj\Debug\GeoPartner.csprojResolveAssemblyReference.cache
 C:\Users\pedro\documents\visual studio 2015\Projects\GeoPartner\GeoPartner\obj\Debug\GeoPartner.dll.mdb
 C:\Users\pedro\documents\visual studio 2015\Projects\GeoPartner\GeoPartner\bin\Debug\GeoPartner.dll.mdb

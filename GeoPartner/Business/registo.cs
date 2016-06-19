@@ -60,7 +60,7 @@ namespace GeoPartner
             byte[] bitmapData;
             using (var stream = new MemoryStream())
             {
-                bitmap.Compress(Bitmap.CompressFormat.Jpeg, 0, stream);
+                bitmap.Compress(Bitmap.CompressFormat.Jpeg, 80, stream);
                 bitmapData = stream.ToArray();
             }
             return bitmapData;

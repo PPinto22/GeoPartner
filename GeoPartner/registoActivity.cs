@@ -19,6 +19,7 @@ using Android.Support.V4.Content;
 using Android;
 using BackOffice.Business;
 using Android.Media;
+using System.Threading;
 
 namespace GeoPartner
 {
@@ -53,9 +54,11 @@ namespace GeoPartner
         private File _file;
 
         // Audio
-        MediaRecorder _recorder;
-        MediaPlayer _player;
-        private string path_voz = Android.OS.Environment.ExternalStorageDirectory.Path + "/GeoPartner/voz.3gp";
+        private AudioRecord _recorder;
+        private MediaPlayer _player;
+        private byte[] audioBuffer;
+        private int audioData;
+        private string path_voz = Android.OS.Environment.ExternalStorageDirectory.Path + "/GeoPartner/voz.wav";
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -119,6 +122,7 @@ namespace GeoPartner
                 this.existeGravacao = true;
 
                 this._recorder.Stop();
+                this._recorder.Release();
             }
             else
             {
@@ -154,24 +158,76 @@ namespace GeoPartner
             this.buttonGuardar.Enabled = false;
             this.buttonTipoRegisto.Enabled = false;
 
-            try
+            new Thread(delegate ()
             {
-                File fich_voz = new File(path_voz);
-                if (fich_voz.Exists())
+                RecordAudio();
+            }).Start();
+        }
+
+        public void RecordAudio()
+        {
+            try
+            { 
+            File fich_voz = new File(path_voz);
+            if (fich_voz.Exists())
+            {
+                fich_voz.Delete();
+            }
+            System.IO.Stream outputStream = System.IO.File.Open(path_voz, System.IO.FileMode.Create);
+            System.IO.BinaryWriter bWriter = new System.IO.BinaryWriter(outputStream);
+
+            audioBuffer = new byte[8000];
+
+
+            this._recorder = new AudioRecord(
+                // Hardware source of recording.
+                AudioSource.Mic,
+                // Frequency
+                44100,
+                // Mono or stereo
+                ChannelIn.Mono,
+                // Audio encoding
+                Android.Media.Encoding.Pcm16bit,
+                // Length of the audio clip.
+                audioBuffer.Length
+            );
+
+            long totalAudioLen = 0;
+            long totalDataLen = totalAudioLen + 36;
+            long longSampleRate = 44100;
+            int channels = 2;
+            long byteRate = 16 * longSampleRate * channels / 8;
+
+            totalAudioLen = audioBuffer.Length;
+            totalDataLen = totalAudioLen + 36;
+
+            WriteWaveFileHeader(
+                bWriter,
+                totalAudioLen,
+                totalDataLen,
+                longSampleRate,
+                channels,
+                byteRate);
+
+            this._recorder.StartRecording();
+
+            while (this.recording == true)
+            {
+                try
                 {
-                    fich_voz.Delete();
+                    /// Keep reading the buffer while there is audio input.
+                    audioData = this._recorder.Read(audioBuffer, 0, audioBuffer.Length);
+
+                    bWriter.Write(audioBuffer);
                 }
-                if(this._recorder == null)
+                catch (System.Exception ex)
                 {
-                    this._recorder = new MediaRecorder();
+                    System.Console.Out.WriteLine(ex.Message);
+                    break;
                 }
-                this._recorder.Reset();
-                this._recorder.SetAudioSource(AudioSource.Mic);
-                this._recorder.SetOutputFormat(OutputFormat.ThreeGpp);
-                this._recorder.SetAudioEncoder(AudioEncoder.AmrNb);
-                this._recorder.SetOutputFile(path_voz);
-                this._recorder.Prepare();
-                this._recorder.Start();
+            }
+            outputStream.Close();
+            bWriter.Close();
             }
             catch (Exception ex)
             {
@@ -186,6 +242,62 @@ namespace GeoPartner
                 this.recording = false;
                 this.existeGravacao = false;
             }
+        }
+
+        private void WriteWaveFileHeader(
+        System.IO.BinaryWriter bWriter, long totalAudioLen,
+        long totalDataLen, long longSampleRate, int channels,
+        long byteRate)
+        {
+
+            byte[] header = new byte[44];
+
+            header[0] = (byte)'R'; // RIFF/WAVE header
+            header[1] = (byte)'I';
+            header[2] = (byte)'F';
+            header[3] = (byte)'F';
+            header[4] = (byte)(totalDataLen & 0xff);
+            header[5] = (byte)((totalDataLen >> 8) & 0xff);
+            header[6] = (byte)((totalDataLen >> 16) & 0xff);
+            header[7] = (byte)((totalDataLen >> 24) & 0xff);
+            header[8] = (byte)'W';
+            header[9] = (byte)'A';
+            header[10] = (byte)'V';
+            header[11] = (byte)'E';
+            header[12] = (byte)'f'; // 'fmt ' chunk
+            header[13] = (byte)'m';
+            header[14] = (byte)'t';
+            header[15] = (byte)' ';
+            header[16] = 16; // 4 bytes: size of 'fmt ' chunk
+            header[17] = 0;
+            header[18] = 0;
+            header[19] = 0;
+            header[20] = 1; // format = 1
+            header[21] = 0;
+            header[22] = (byte)channels;
+            header[23] = 0;
+            header[24] = (byte)(longSampleRate & 0xff);
+            header[25] = (byte)((longSampleRate >> 8) & 0xff);
+            header[26] = (byte)((longSampleRate >> 16) & 0xff);
+            header[27] = (byte)((longSampleRate >> 24) & 0xff);
+            header[28] = (byte)(byteRate & 0xff);
+            header[29] = (byte)((byteRate >> 8) & 0xff);
+            header[30] = (byte)((byteRate >> 16) & 0xff);
+            header[31] = (byte)((byteRate >> 24) & 0xff);
+            header[32] = (byte)(2 * 16 / 8); // block align
+            header[33] = 0;
+            header[34] = 16; // bits per sample
+            header[35] = 0;
+            header[36] = (byte)'d';
+            header[37] = (byte)'a';
+            header[38] = (byte)'t';
+            header[39] = (byte)'a';
+            header[40] = (byte)(totalAudioLen & 0xff);
+            header[41] = (byte)((totalAudioLen >> 8) & 0xff);
+            header[42] = (byte)((totalAudioLen >> 16) & 0xff);
+            header[43] = (byte)((totalAudioLen >> 24) & 0xff);
+
+            bWriter.Write(header, 0, 44);
         }
 
         private bool isEmpty()
@@ -246,7 +358,7 @@ namespace GeoPartner
                 try
                 {
                     voz = System.IO.File.ReadAllBytes(path_voz);
-                    System.IO.File.Delete(path_voz);
+                    //System.IO.File.Delete(path_voz);
                 }
                 catch { }
                 registo reg;
@@ -363,10 +475,11 @@ namespace GeoPartner
                     int height = Resources.DisplayMetrics.HeightPixels;
                     int width = this.imageView1.Height;
                     Bitmap largeBitmap = MediaStore.Images.Media.GetBitmap(this.ContentResolver, imageUri);
-                    this.foto = Bitmap.CreateScaledBitmap(largeBitmap, 512, 512, true);
+                    Bitmap redim = Bitmap.CreateScaledBitmap(largeBitmap, 520, 550, true);
+                    this.foto = redim;
                     if (this.foto != null)
                     {
-                        this.imageView1.SetImageBitmap(this.foto);
+                        this.imageView1.SetImageBitmap(redim);
                     }
 
                     // Dispose of the Java side bitmap.
